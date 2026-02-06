@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Rose Day ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url('https://image2url.com/r2/default/images/1770403840803-01bf03d0-0119-41ce-8903-cb19417c6ce0.jpeg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(6px);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    h1 { font-size: 2.2rem; margin-bottom: 10px; }
+    p { font-size: 1.05rem; line-height: 1.6; }
+    .rose { font-size: 3rem; margin: 15px 0; }
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background: #ff4d6d;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    button:hover { background: #ff1e4d; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Rose Day 🌹</h1>
+    <div class="rose">🌹🌹🌹</div>
+    <p>
+      Ei golap ta tomar jonno ❤️<br />
+      Tumi amar jiboner shobcheye shundor golap.
+    </p>
+    <button onclick="openNextPage()">Next ❤️</button>
+  </div>
+
+  <script>
+    function openNextPage() {
+      document.body.innerHTML = `
+      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; background:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('myphoto.jpg'); background-size:cover; background-position:center; color:white; padding:20px;">
+        <div style="background:rgba(255,255,255,0.15); backdrop-filter:blur(6px); padding:30px; border-radius:20px; max-width:650px; line-height:1.7;">
+          <h1 style="text-align:center;">Love you priotoma..... ❤️</h1>
+          <p>
+আজ Rose Day… আমাদের প্রথম ❤️<br/><br/>
+আমি তোকে সত্যিই খুব ভালোবাসি—খুব, খুব, খুব।<br/>
+আজ আমার প্রতিটা ভাবনা শুধু তোকেই ঘিরে।<br/><br/>
+আমি তোকে কোনোদিন একা ছেড়ে যাব না।<br/>
+আজ, কাল, যাই হোক—আমি আছি তোর পাশে। 💫<br/>
+Happy Rose Day, আমার প্রিয়তমা 🌹
+          </p>
+          <button onclick="openGalleryPage()">Next ➜ Memories ❤️</button>
+        </div>
+      </div>`;
+    }
+
+    function openGalleryPage() {
+      document.body.innerHTML = `
+      <div style="min-height:100vh; padding:20px; background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('myphoto.jpg'); background-size:cover; background-position:center; color:white;">
+        <h1 style="text-align:center;">Our Memories 📸❤️</h1>
+        <p style="text-align:center;">এখানে আমাদের ৪টা প্রিয় ছবি ও caption যোগ করো 🌹</p>
+
+        <audio autoplay loop>
+          <source src="love-music.mp3" type="audio/mpeg">
+        </audio>
+
+        <div style="text-align:center; margin:20px 0;">
+          <input type="file" accept="image/*" multiple onchange="previewImages(event)" />
+        </div>
+
+        <div id="gallery" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:15px; max-width:800px; margin:0 auto;"></div>
+      </div>`;
+    }
+
+    function previewImages(event) {
+      const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
+      const files = Array.from(event.target.files).slice(0, 4);
+
+      files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const wrapper = document.createElement('div');
+          wrapper.style.textAlign = 'center';
+
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.style.width = '100%';
+          img.style.borderRadius = '15px';
+          img.style.marginBottom = '8px';
+
+          const caption = document.createElement('input');
+          caption.type = 'text';
+          caption.placeholder = 'Write a memory 💕';
+          caption.style.width = '90%';
+          caption.style.padding = '6px';
+          caption.style.borderRadius = '8px';
+          caption.style.border = 'none';
+
+          wrapper.appendChild(img);
+          wrapper.appendChild(caption);
+          gallery.appendChild(wrapper);
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  </script>
+
+</body>
+</html>
